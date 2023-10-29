@@ -1,0 +1,1 @@
+    CHARACTER (LEN=*), PARAMETER :: commit_version = 'git commit 6233639c599119e76fca17dba9ea211af53a0ba9 13 files changed, 219 insertions(+), 176 deletions(-)'

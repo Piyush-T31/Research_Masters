@@ -1,0 +1,811 @@
+Neither WRF_EM_CORE nor WRF_PLUS_CORE
+        are explicitly specified in shell environment.... 
+ 
+============================================================================================== 
+ 
+V4.4.2
+git commit 6233639c599119e76fca17dba9ea211af53a0ba9 13 files changed, 219 insertions(+), 176 deletions(-)
+ 
+Compiling: WRF_EM_CORE  
+ 
+Linux gra525 3.10.0-1160.88.1.el7.x86_64 #1 SMP Tue Mar 7 15:41:52 UTC 2023 x86_64 GNU/Linux
+ 
+Intel(R) Fortran Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.1.1.217 Build 20200306
+Copyright (C) 1985-2020 Intel Corporation.  All rights reserved.
+
+ 
+============================================================================================== 
+ 
+setting parallel make -j 8
+ 
+============================================================================================== 
+ 
+The following indicate the compilers selected to build the WRF system
+ 
+Serial Fortran compiler (mostly for tool generation):
+which SFC
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/Core/intel/2020.1.217/compilers_and_libraries_2020.1.217/linux/bin/intel64/ifort
+ 
+Serial C compiler (mostly for tool generation):
+which SCC
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/Core/intel/2020.1.217/compilers_and_libraries_2020.1.217/linux/bin/intel64/icc
+ 
+Fortran compiler for the model source code:
+which FC
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/Core/intel/2020.1.217/compilers_and_libraries_2020.1.217/linux/bin/intel64/ifort
+Will use 'time' to report timing information
+ 
+C compiler for the model source code:
+which CC
+/cvmfs/restricted.computecanada.ca/easybuild/software/2020/Core/intel/2020.1.217/compilers_and_libraries_2020.1.217/linux/bin/intel64/icc
+ 
+============================================================================================== 
+ 
+make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " ext
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd frame ; make -i -r externals ) ; \
+else \
+  ( cd frame ; make -i -r PLUSFLAG="-DWRFPLUS=1" externals ) ; \
+fi
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/frame'
+( cd /scratch/piyush31/SCM-WRF/external/esmf_time_f90 ; \
+          make -j 8 FC="ifort -real-size `expr 8 \* 4` -i4  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " RANLIB="ranlib" \
+          CPP="/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -I. -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/external/esmf_time_f90'
+make[3]: Nothing to be done for 'default'.
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/external/esmf_time_f90'
+( cd /scratch/piyush31/SCM-WRF/external/io_netcdf ; \
+          make -j 8 NETCDFPATH="/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4" NETCDFFPATH="/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          CC="icc" CFLAGS="-w -O3 -ip  -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" \
+          FC="ifort -real-size `expr 8 \* 4` -i4  -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_netcdf'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_netcdf'
+( cd /scratch/piyush31/SCM-WRF/external/ioapi_share ; \
+          make -i -r NATIVE_RWORDSIZE="4" RWORDSIZE="4" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/external/ioapi_share'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/external/ioapi_share'
+( cd /scratch/piyush31/SCM-WRF/external/io_grib_share ; \
+          make -j 8 CC="icc" CFLAGS="-w -O3 -ip  -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="ifort -real-size `expr 8 \* 4` -i4 -I.  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" archive) 
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib_share'
+make[4]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib_share'
+ar ru ./libio_grib_share.a io_grib_share.o get_region_center.o gridnav.o open_file.o
+ranlib ./libio_grib_share.a
+make[4]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib_share'
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib_share'
+( cd /scratch/piyush31/SCM-WRF/external/io_grib1 ; \
+          make -j 8 CC="icc" CFLAGS="-w -O3 -ip  -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="ifort -real-size `expr 8 \* 4` -i4 -I.  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" archive)
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib1'
+        Doing make archive on library subdirectory MEL_grib1
+make[4]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib1/MEL_grib1'
+make[5]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib1/MEL_grib1'
+ar ru ../libio_grib1.a FTP_getfile.o apply_bitmap.o display_gribhdr.o gbyte.o grib_dec.o grib_enc.o grib_seek.o gribgetbds.o gribgetbms.o gribgetgds.o gribgetpds.o gribhdr2file.o gribputbds.o gribputgds.o gribputpds.o hdr_print.o init_dec_struct.o init_enc_struct.o init_gribhdr.o init_struct.o ld_dec_lookup.o ld_enc_input.o ld_enc_lookup.o ld_grib_origctrs.o make_default_grbfn.o make_grib_log.o map_lvl.o map_parm.o pack_spatial.o prt_inp_struct.o upd_child_errmsg.o prt_badmsg.o swap.o grib_uthin.o set_bytes.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib1/MEL_grib1'
+make[4]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib1/MEL_grib1'
+        Doing make archive on library subdirectory grib1_util
+make[4]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib1/grib1_util'
+make[5]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib1/grib1_util'
+ar ru ../libio_grib1.a alloc_2d.o read_grib.o write_grib.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib1/grib1_util'
+make[4]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib1/grib1_util'
+        Doing make archive on library subdirectory WGRIB
+make[4]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib1/WGRIB'
+make[4]: Nothing to be done for 'archive'.
+make[4]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib1/WGRIB'
+make[4]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_grib1'
+ar ru ./libio_grib1.a grib1_routines.o gribmap.o io_grib1.o trim.o
+ranlib ./libio_grib1.a
+make[4]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib1'
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_grib1'
+( cd /scratch/piyush31/SCM-WRF/external/io_int ; \
+          make -j 8 CC="icc -DFSEEKO64_OK " CFLAGS_LOCAL="-w -O3 -ip " RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="time ifort -real-size `expr 8 \* 4` -i4  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   " FGREP="fgrep -iq" \
+          TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" ARCHFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0" all )
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_int'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_int'
+( cd /scratch/piyush31/SCM-WRF/external/fftpack/fftpack5 ; \
+          make -j 8 FC="ifort" FFLAGS="-real-size `expr 8 \* 4` -i4  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " RANLIB="ranlib" AR="ar" \
+          ARFLAGS="ru" CPP="/lib/cpp -P -nostdinc" CPPFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT " RM="rm -f" )
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/external/fftpack/fftpack5'
+ar ru libfftpack.a c1f2kb.o  cfft1b.o  cmf3kf.o  cosqb1.o  costmi.o   dcosq1f.o  dfftb1.o   mradb2.o  mrfti1.o  r1fgkf.o     rfft2i.o  sinqmi.o  z1f2kf.o  zfft1f.o  zmf4kb.o c1f2kf.o  cfft1f.o  cmf4kb.o  cosqf1.o  d1f2kb.o   dcosq1i.o  dfftf1.o   mradb3.o  msntb1.o  r4_factor.o  rfftb1.o  sint1b.o  z1f3kb.o  zfft1i.o  zmf4kf.o c1f3kb.o  cfft1i.o  cmf4kf.o  cosqmb.o  d1f2kf.o   dcosqb1.o  dffti1.o   mradb4.o  msntf1.o  r4_mcfti1.o  rfftf1.o  sint1f.o  z1f3kf.o  zfft2b.o  zmf5kb.o c1f3kf.o  cfft2b.o  cmf5kb.o  cosqmf.o  d1f3kb.o   dcosqf1.o  dsint1b.o  mradb5.o  r1f2kb.o  r4_tables.o  rffti1.o  sint1i.o  z1f4kb.o  zfft2f.o  zmf5kf.o c1f4kb.o  cfft2f.o  cmf5kf.o  cosqmi.o  d1f3kf.o   dcost1b.o  dsint1f.o  mradbg.o  r1f2kf.o  r8_factor.o  rfftmb.o  sintb1.o  z1f4kf.o  zfft2i.o  zmfgkb.o c1f4kf.o  cfft2i.o  cmfgkb.o  cost1b.o  d1f4kb.o   dcost1f.o  dsint1i.o  mradf2.o  r1f3kb.o  r8_mcfti1.o  rfftmf.o  sintf1.o  z1f5kb.o  zfftmb.o  zmfgkf.o c1f5kb.o  cfftmb.o  cmfgkf.o  cost1f.o  d1f4kf.o   dcost1i.o  dsintb1.o  mradf3.o  r1f3kf.o  r8_tables.o  rfftmi.o  sintmb.o  z1f5kf.o  zfftmf.o  zmfm1b.o c1f5kf.o  cfftmf.o  cmfm1b.o  cost1i.o  d1f5kb.o   dcostb1.o  dsintf1.o  mradf4.o  r1f4kb.o  rfft1b.o     sinq1b.o  sintmf.o  z1fgkb.o  zfftmi.o  zmfm1f.o c1fgkb.o  cfftmi.o  cmfm1f.o  costb1.o  d1f5kf.o   dcostf1.o  mcsqb1.o   mradf5.o  r1f4kf.o  rfft1f.o     sinq1f.o  sintmi.o  z1fgkf.o  zmf2kb.o c1fgkf.o  cmf2kb.o  cosq1b.o  costf1.o  d1fgkb.o   dfft1b.o   mcsqf1.o   mradfg.o  r1f5kb.o  rfft1i.o     sinq1i.o  xercon.o  z1fm1b.o  zmf2kf.o c1fm1b.o  cmf2kf.o  cosq1f.o  costmb.o  d1fgkf.o   dfft1f.o   mcstb1.o   mrftb1.o  r1f5kf.o  rfft2b.o     sinqmb.o  xerfft.o  z1fm1f.o  zmf3kb.o c1fm1f.o  cmf3kb.o  cosq1i.o  costmf.o  dcosq1b.o  dfft1i.o   mcstf1.o   mrftf1.o  r1fgkb.o  rfft2f.o     sinqmf.o  z1f2kb.o  zfft1b.o  zmf3kf.o 
+ranlib libfftpack.a
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/external/fftpack/fftpack5'
+( /bin/rm -f /scratch/piyush31/SCM-WRF/tools/gen_comms.c )
+( if [ ! -e module_dm.F ] ; then /bin/cp module_dm_warning module_dm.F ; cat module_dm_stubs.F >> module_dm.F ; fi )
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/frame'
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " toolsdir
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="icc  -DIWORDSIZE=4 -DMAX_HISTORY=25" ) ; \
+else \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="icc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -DWRFPLUS=1" ) ; \
+fi
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/tools'
+/bin/cp gen_comms.stub gen_comms.c
+icc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -DNMM_CORE=0  -c -g  gen_comms.c
+icc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -o registry -g   registry.o my_strtok.o reg_parse.o data.o type.o misc.o gen_defs.o gen_allocs.o gen_mod_state_descr.o gen_scalar_indices.o gen_args.o gen_config.o sym.o symtab_gen.o gen_irr_diag.o gen_model_data_ord.o gen_interp.o gen_comms.o gen_scalar_derefs.o set_dim_strs.o gen_wrf_io.o gen_streams.o
+if [ -x /usr/bin/peflags.exe ] ; then /usr/bin/peflags.exe --stack-reserve=33554432 registry; fi
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/tools'
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF'
+/bin/rm -f main/libwrflib.a main/libwrflib.lib
+make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " framework
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF'
+--------------------------------------
+( cd frame ; make -i -r -j 8 LLIST="" framework ; \
+          cd ../external/io_netcdf ; \
+          make -i -r NETCDFPATH="/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4" \
+               FC="time ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time" \
+               LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/scratch/piyush31/SCM-WRF/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf; \
+          cd ../io_netcdf ; \
+          make -i -r NETCDFPATH="/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4" \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/scratch/piyush31/SCM-WRF/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_netcdfpar ; \
+           make -i -r NETCDFPARPATH="/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4" \
+               FC="time ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time" \
+               LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/scratch/piyush31/SCM-WRF/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf; \
+          cd ../io_netcdfpar ; \
+           make -i -r NETCDFPARPATH="/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4" \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/scratch/piyush31/SCM-WRF/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_pio ; \
+          echo SKIPPING PIO BUILD make -i -r NETCDFPATH="" \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  " RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS=" -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/scratch/piyush31/SCM-WRF/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_int ; \
+          make -i -r SFC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  " \
+               RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1" DM_FC="mpif90 -f90=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  "\
+               TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time" \
+               ESMF_MOD_DEPENDENCE="/scratch/piyush31/SCM-WRF/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf ; \
+          cd ../../frame )
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/frame'
+ar ru ../main/libwrflib.a module_driver_constants.o module_domain_type.o module_streams.o module_domain.o  module_integrate.o module_timing.o module_configure.o module_tiles.o module_machine.o module_nesting.o module_wrf_error.o module_state_description.o module_sm.o module_io.o module_comm_dm.o module_comm_dm_0.o module_comm_dm_1.o module_comm_dm_2.o module_comm_dm_3.o module_comm_dm_4.o module_comm_nesting_dm.o module_dm.o module_quilt_outbuf_ops.o module_io_quilt.o module_cpl.o module_cpl_oasis3.o module_clear_halos.o wrf_num_bytes_between.o wrf_shutdown.o wrf_debug.o libmassv.o collect_on_comm.o hires_timer.o clog.o nl_get_0_routines.o nl_get_1_routines.o nl_get_2_routines.o nl_get_3_routines.o nl_get_4_routines.o nl_get_5_routines.o nl_get_6_routines.o nl_get_7_routines.o nl_set_0_routines.o nl_set_1_routines.o nl_set_2_routines.o nl_set_3_routines.o nl_set_4_routines.o nl_set_5_routines.o nl_set_6_routines.o nl_set_7_routines.o  module_alloc_space_0.o module_alloc_space_1.o module_alloc_space_2.o module_alloc_space_3.o module_alloc_space_4.o module_alloc_space_5.o module_alloc_space_6.o module_alloc_space_7.o module_alloc_space_8.o module_alloc_space_9.o
+ar: creating ../main/libwrflib.a
+ranlib ../main/libwrflib.a
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/frame'
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_netcdf'
+x=`echo "time ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4  " | awk '{print $1}'` ; export x ; \
+if [ $x = "gfortran" ] ; then \
+           echo removing external declaration of iargc for gfortran ; \
+   /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I../ioapi_share diffwrf.F90 | sed '/integer *, *external.*iargc/d' > diffwrf.f ;\
+        else \
+   /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I../ioapi_share diffwrf.F90 > diffwrf.f ; \
+        fi
+time ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4   -c  -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I../ioapi_share diffwrf.f
+0.61user 0.11system 0:02.41elapsed 30%CPU (0avgtext+0avgdata 62168maxresident)k
+65568inputs+152outputs (253major+18897minor)pagefaults 0swaps
+diffwrf io_netcdf is being built now. 
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_open_for_read_begin_':
+wrf_io.f:(.text+0x349b): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x34d0): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3517): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x36f9): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x382d): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3a44): undefined reference to `nf_get_vara_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3aed): undefined reference to `nf_inq_nvars_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3bdf): undefined reference to `nf_inq_varname_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3d3a): undefined reference to `nf_inq_varname_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3d62): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3f7a): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4086): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x428d): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4494): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o:wrf_io.f:(.text+0x469a): more undefined references to `nf_strerror_' follow
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_open_for_update_':
+wrf_io.f:(.text+0x642b): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x6460): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x64a7): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x6689): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x67bd): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x69d4): undefined reference to `nf_get_vara_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x6a7d): undefined reference to `nf_inq_nvars_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x6b6f): undefined reference to `nf_inq_varname_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x6cca): undefined reference to `nf_inq_varname_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x6cf2): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x6f0a): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x7016): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x721d): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x7424): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o:wrf_io.f:(.text+0x762a): more undefined references to `nf_strerror_' follow
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_open_for_write_begin_':
+wrf_io.f:(.text+0x91d1): undefined reference to `nf_create_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x91f8): undefined reference to `nf_create_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x9214): undefined reference to `nf_set_chunk_cache_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x92b1): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x95b2): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x962a): undefined reference to `nf_def_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x96df): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x98dc): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x9ad9): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x9cd6): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_open_for_write_commit_':
+wrf_io.f:(.text+0xb25b): undefined reference to `nf_set_fill_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xb481): undefined reference to `nf_enddef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xb4d4): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_ioclose_':
+wrf_io.f:(.text+0xbbb2): undefined reference to `nf_close_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xbc01): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_iosync_':
+wrf_io.f:(.text+0xd123): undefined reference to `nf_sync_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xd15d): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_redef_':
+wrf_io.f:(.text+0xda43): undefined reference to `nf_redef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xda85): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_enddef_':
+wrf_io.f:(.text+0xe178): undefined reference to `nf_enddef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xe1bd): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_dom_ti_real_':
+wrf_io.f:(.text+0xee41): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xf6ae): undefined reference to `nf_get_att_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xf9ae): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0xfc5c): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_dom_ti_integer_':
+wrf_io.f:(.text+0x107e1): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x11043): undefined reference to `nf_get_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x113bd): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1166b): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_dom_ti_double_':
+wrf_io.f:(.text+0x121ed): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x12a54): undefined reference to `nf_get_att_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x12dc3): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x13070): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_dom_ti_logical_':
+wrf_io.f:(.text+0x13bf1): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x14453): undefined reference to `nf_get_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x147e2): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x14a90): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_dom_ti_char_':
+wrf_io.f:(.text+0x15565): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x15a4b): undefined reference to `nf_get_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x15a8c): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x15d20): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_dom_ti_real_':
+wrf_io.f:(.text+0x1691e): undefined reference to `nf_put_att_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x16c08): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x16e99): undefined reference to `nf_redef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x16ed5): undefined reference to `nf_put_att_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x16efa): undefined reference to `nf_enddef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x16f25): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x171b9): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x17458): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_dom_ti_integer_':
+wrf_io.f:(.text+0x17fde): undefined reference to `nf_put_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x182c8): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x18559): undefined reference to `nf_redef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x18595): undefined reference to `nf_put_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x185ba): undefined reference to `nf_enddef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x185e5): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x18879): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x18b18): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_dom_ti_double_':
+wrf_io.f:(.text+0x1969e): undefined reference to `nf_put_att_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x19988): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x19c19): undefined reference to `nf_redef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x19c55): undefined reference to `nf_put_att_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x19c7a): undefined reference to `nf_enddef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x19ca5): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x19f39): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1a1d8): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_dom_ti_logical_':
+wrf_io.f:(.text+0x1b44c): undefined reference to `nf_put_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1b67e): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1b92b): undefined reference to `nf_redef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1bd66): undefined reference to `nf_put_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1bf8c): undefined reference to `nf_enddef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1bfc7): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1c270): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1c52b): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_dom_ti_char_':
+wrf_io.f:(.text+0x1d0e4): undefined reference to `nf_put_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1d3ce): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1d65f): undefined reference to `nf_redef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1d6b0): undefined reference to `nf_put_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1d6d5): undefined reference to `nf_enddef_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1d700): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1d994): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1dc33): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_ti_real_':
+wrf_io.f:(.text+0x1e53d): undefined reference to `nf_put_att_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1e6d8): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_ti_double_':
+wrf_io.f:(.text+0x1f2ed): undefined reference to `nf_put_att_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x1f488): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_ti_integer_':
+wrf_io.f:(.text+0x2009d): undefined reference to `nf_put_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x20238): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_ti_logical_':
+wrf_io.f:(.text+0x211f6): undefined reference to `nf_put_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x21559): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_ti_char_':
+wrf_io.f:(.text+0x221fe): undefined reference to `nf_put_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x22399): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x22737): undefined reference to `nf_put_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_ti_real_':
+wrf_io.f:(.text+0x22f96): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x23684): undefined reference to `nf_get_att_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x23975): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x23c08): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_ti_double_':
+wrf_io.f:(.text+0x2479a): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x24e88): undefined reference to `nf_get_att_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x251e6): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2547a): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_ti_integer_':
+wrf_io.f:(.text+0x2600a): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x266ed): undefined reference to `nf_get_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x26a54): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x26ce8): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_ti_logical_':
+wrf_io.f:(.text+0x27876): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x27f58): undefined reference to `nf_get_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x282d4): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x28567): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_ti_char_':
+wrf_io.f:(.text+0x29085): undefined reference to `nf_inq_att_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x29594): undefined reference to `nf_get_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x295ca): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x29826): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_td_char_':
+wrf_io.f:(.text+0x2a1b3): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2a206): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2a70e): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2aa19): undefined reference to `nf_get_vara_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2aa49): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2ac75): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2aeec): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2b166): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_support_routines_mp_gettimeindex_':
+wrf_io.f:(.text+0x2b9db): undefined reference to `nf_put_vara_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2bb32): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_td_real_':
+wrf_io.f:(.text+0x2ccdd): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2cdd7): undefined reference to `nf_def_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2ce15): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2d092): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2d4d2): undefined reference to `nf_put_vara_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2d4fa): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_td_integer_':
+wrf_io.f:(.text+0x2eb7d): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2ec77): undefined reference to `nf_def_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2ecb5): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2ef32): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2f372): undefined reference to `nf_put_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x2f39a): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_td_double_':
+wrf_io.f:(.text+0x30a1d): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x30b17): undefined reference to `nf_def_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x30b55): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x30dd2): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x31212): undefined reference to `nf_put_vara_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3123a): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_td_logical_':
+wrf_io.f:(.text+0x328c0): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x329ba): undefined reference to `nf_def_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x329f8): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x32c75): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x33497): undefined reference to `nf_put_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x336a1): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_put_var_td_char_':
+wrf_io.f:(.text+0x34d1b): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x34e0e): undefined reference to `nf_def_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x34e4a): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x350d0): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3551c): undefined reference to `nf_put_vara_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x35544): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_td_real_':
+wrf_io.f:(.text+0x361e7): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3623b): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x36760): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x36ba4): undefined reference to `nf_get_vara_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x36e8c): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x370bb): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x37335): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x375b3): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_td_integer_':
+wrf_io.f:(.text+0x38067): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x380bb): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x385d5): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x38a19): undefined reference to `nf_get_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x38d94): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x38fc3): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3923d): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x394bb): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_td_double_':
+wrf_io.f:(.text+0x39f67): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x39fbb): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3a4e0): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3a924): undefined reference to `nf_get_vara_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3ac95): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3aec4): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3b13e): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3b3bc): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_td_logical_':
+wrf_io.f:(.text+0x3be6a): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3bebe): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3c3dc): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3c829): undefined reference to `nf_get_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3cbb7): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3cde7): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3d062): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3d2e0): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_dom_td_char_':
+wrf_io.f:(.text+0x3dd23): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3dd76): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3e279): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3e582): undefined reference to `nf_get_vara_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3e5b1): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3e7dc): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3ea52): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x3ecce): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_write_field_':
+wrf_io.f:(.text+0x41191): undefined reference to `nf_def_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4130d): undefined reference to `nf_def_var_chunking_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x41347): undefined reference to `nf_def_var_deflate_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x413bc): undefined reference to `nf_put_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x414ba): undefined reference to `nf_put_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x416cb): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x41728): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x41931): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x41b39): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x41daa): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4208f): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x42681): undefined reference to `nf_def_dim_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x426ad): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x428b9): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_read_field_':
+wrf_io.f:(.text+0x4de11): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4de60): undefined reference to `nf_inq_var_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4dea1): undefined reference to `nf_get_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4e3e8): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4f3f4): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4f94c): undefined reference to `nf_inq_dimname_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4f9c8): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4fdc5): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x4ffcd): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x501d6): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: in function `ext_ncd_get_var_info_':
+wrf_io.f:(.text+0x52263): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x52288): undefined reference to `nf_inq_vartype_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x522b8): undefined reference to `nf_get_att_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x52cd3): undefined reference to `nf_get_att_text_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x52e7a): undefined reference to `nf_inq_vardimid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x52ee0): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x52f21): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x5311d): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x53317): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x53511): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.f:(.text+0x5370b): undefined reference to `nf_strerror_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o:wrf_io.f:(.text+0x53905): more undefined references to `nf_strerror_' follow
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.o: in function `ext_ncd_realfieldio_':
+field_routines.f:(.text+0x51): undefined reference to `nf_put_vara_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.f:(.text+0x69): undefined reference to `nf_get_vara_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.o: in function `ext_ncd_doublefieldio_':
+field_routines.f:(.text+0x1c1): undefined reference to `nf_put_vara_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.f:(.text+0x1d9): undefined reference to `nf_get_vara_double_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.o: in function `ext_ncd_intfieldio_':
+field_routines.f:(.text+0x331): undefined reference to `nf_put_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.f:(.text+0x349): undefined reference to `nf_get_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.o: in function `ext_ncd_logicalfieldio_':
+field_routines.f:(.text+0xad0): undefined reference to `nf_put_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: field_routines.f:(.text+0xafd): undefined reference to `nf_get_vara_int_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.o: in function `wrfsi_static_mp_open_wrfsi_static_':
+module_wrfsi_static.f:(.text+0x108): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0x201): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.o: in function `wrfsi_static_mp_get_wrfsi_static_dims_':
+module_wrfsi_static.f:(.text+0x4ce): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0x5d0): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0x5fd): undefined reference to `nf_inq_dimid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0x60f): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0x628): undefined reference to `nf_inq_dimid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0x63a): undefined reference to `nf_inq_dimlen_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0x6e5): undefined reference to `nf_close_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.o: in function `wrfsi_static_mp_get_wrfsi_static_2d_':
+module_wrfsi_static.f:(.text+0x9b2): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0xab4): undefined reference to `nf_open_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0xae1): undefined reference to `nf_inq_varid_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0xd76): undefined reference to `nf_get_var_real_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: module_wrfsi_static.f:(.text+0xf9f): undefined reference to `nf_close_'
+
+real	0m3.022s
+user	0m0.542s
+sys	0m0.364s
+make[2]: [makefile:45: diffwrf] Error 1 (ignored)
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_netcdf'
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_netcdf'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_netcdf'
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_netcdfpar'
+x=`echo "time ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4  " | awk '{print $1}'` ; export x ; \
+if [ $x = "gfortran" ] ; then \
+           echo removing external declaration of iargc for gfortran ; \
+   /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_NETCDFPAR -D_NETCDF4 -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I../ioapi_share diffwrf.F90 | sed '/integer *, *external.*iargc/d' > diffwrf.f ;\
+        else \
+   /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_NETCDFPAR -D_NETCDF4 -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I../ioapi_share diffwrf.F90 > diffwrf.f ; \
+        fi
+time ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4   -c  -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I../ioapi_share diffwrf.f
+0.52user 0.11system 0:01.78elapsed 35%CPU (0avgtext+0avgdata 59708maxresident)k
+24inputs+128outputs (0major+17986minor)pagefaults 0swaps
+diffwrf io_netcdfpar is being built now. 
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: wrf_io.o: undefined reference to symbol 'mpi_bcast_'
+/cvmfs/soft.computecanada.ca/gentoo/2020/usr/x86_64-pc-linux-gnu/binutils-bin/2.33.1/ld: /cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/Compiler/intel2020/openmpi/4.0.3/lib/libmpi_mpifh.so.40: error adding symbols: DSO missing from command line
+
+real	0m2.393s
+user	0m0.451s
+sys	0m0.323s
+make[2]: [Makefile:45: diffwrf] Error 1 (ignored)
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_netcdfpar'
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_netcdfpar'
+/bin/rm -f libwrfio_nfpar.a
+if [ "INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" != "lib.exe" ] ; then \
+                          INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR cr libwrfio_nfpar.a wrf_io.o field_routines.o module_wrfsi_static.o ; \
+                        else \
+                          INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR /out:libwrfio_nfpar.a wrf_io.o field_routines.o module_wrfsi_static.o ; \
+                        fi
+/cvmfs/soft.computecanada.ca/gentoo/2020/bin/sh: line 1: INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR: command not found
+make[2]: [Makefile:19: libwrfio_nfpar.a] Error 127 (ignored)
+ranlib libwrfio_nfpar.a
+ranlib: 'libwrfio_nfpar.a': No such file
+make[2]: [Makefile:20: libwrfio_nfpar.a] Error 1 (ignored)
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_netcdfpar'
+SKIPPING PIO BUILD make -i -r NETCDFPATH= FC=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4   RANLIB=ranlib CPP=/lib/cpp -P -nostdinc LDFLAGS= -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip   TRADFLAG=-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT ESMF_IO_LIB_EXT=-L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time LIB_LOCAL= ESMF_MOD_DEPENDENCE=/scratch/piyush31/SCM-WRF/external/esmf_time_f90/module_utility.o AR=INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/external/io_int'
+make[2]: 'diffwrf' is up to date.
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/external/io_int'
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " shared
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF'
+--------------------------------------
+if [ "`echo -j 8 | sed -e 's/-j//g' -e 's/ \+//g'`" -gt "6" ] ; then \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 6 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 6 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+else \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 8 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 8 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+fi
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/share'
+if [ 0 -eq 1 ] ; then \
+                  make -i -r nmm_contrib                                      ; \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_chem_share.o module_check_a_mundo.o module_HLaw.o module_ctrans_aqchem.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_string_tools.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o    ; \
+                  else                                                         \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_chem_share.o module_check_a_mundo.o module_HLaw.o module_ctrans_aqchem.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_string_tools.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o              ; \
+                fi
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/share'
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " physics
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF'
+--------------------------------------
+if [ 0  -eq 0 ] ; then \
+	( cd phys ; make -i -r submodules ; make -i -r CF2=" " ) ; \
+	if [  -eq 1 ] ; then \
+		@ echo '----------- make cmaq ----------------' ; \
+		( rm -f main/libcmaqlib.a; cd cmaq ; make -i -r -f Makefile.twoway ) ; \
+	fi \
+else \
+	( cd phys ; make -i -r submodules ; make -i -r CF2="../chem/module_data_mosaic_asect.o" ) ; \
+fi
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/phys'
+No action required for NoahMP submodule
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/phys'
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/phys'
+make -i -r -j 8 non_nmm ; \
+ar ru ../main/libwrflib.a module_bep_bem_helper.o complex_number_module.o module_cam_shr_kind_mod.o module_cam_support.o module_cam_shr_const_mod.o module_cam_physconst.o module_cam_cldwat.o module_cam_wv_saturation.o module_cam_esinti.o module_cam_gffgch.o module_cam_error_function.o module_cam_constituents.o module_cam_trb_mtn_stress.o module_cam_molec_diff.o module_cam_upper_bc.o module_cam_bl_diffusion_solver.o module_cam_bl_eddy_diff.o module_cam_mp_microp_aero.o module_cam_mp_cldwat2m_micro.o module_cam_mp_ndrop.o module_cam_mp_modal_aero_initialize_data_phys.o module_cam_mp_radconstants.o module_cam_mp_conv_water.o module_cam_mp_qneg3.o module_data_cam_mam_aero.o module_data_cam_mam_asect.o module_cam_infnan.o  module_bl_ysu.o module_bl_shinhong.o module_bl_mrf.o module_bl_gfs.o module_bl_gfsedmf.o module_bl_myjpbl.o module_bl_qnsepbl.o module_bl_acm.o module_bl_mynn.o module_bl_fogdes.o module_bl_gwdo.o module_bl_gwdo_gsl.o module_bl_myjurb.o module_bl_boulac.o module_checkerror.o module_bl_camuwpbl_driver.o module_bl_mfshconvpbl.o module_bl_eepsilon.o module_shcu_camuwshcu_driver.o module_shcu_camuwshcu.o module_shcu_deng.o module_shcu_grims.o module_shcu_nscv.o module_cu_camzm_driver.o module_cu_camzm.o module_bl_temf.o module_bl_gbmpbl.o module_cu_g3.o module_cu_kf.o module_cu_bmj.o module_cu_kfeta.o module_cu_mskf.o module_cu_tiedtke.o module_cu_ntiedtke.o module_cu_gd.o module_cu_gf_ctrans.o module_cu_gf_wrfdrv.o module_cu_gf_deep.o module_cu_gf_sh.o module_cu_ksas.o module_cu_nsas.o module_cu_sas.o module_gocart_coupling.o module_cu_scalesas.o module_cu_osas.o module_cu_kfcup.o module_madwrf.o module_mp_radar.o module_mp_kessler.o module_mp_lin.o module_mp_sbu_ylin.o module_mp_wsm3.o module_mp_wsm5.o module_mp_wsm6.o module_mp_wsm7.o module_mp_etanew.o module_mp_fer_hires.o module_mp_thompson.o module_fire_emis.o module_mp_SBM_polar_radar.o module_mp_full_sbm.o module_mp_fast_sbm.o module_ltng_lpi.o module_mp_gsfcgce.o module_mp_gsfcgce_4ice_nuwrf.o module_mp_morr_two_moment.o module_mp_p3.o module_mp_jensen_ishmael.o module_mp_morr_two_moment_aero.o module_mp_milbrandt2mom.o module_mp_nssl_2mom.o module_mp_wdm5.o module_mp_wdm6.o module_mp_wdm7.o module_mp_ntu.o module_mp_cammgmp_driver.o module_ra_sw.o module_ra_clWRF_support.o module_ra_gsfcsw.o module_ra_goddard.o module_ra_effective_radius.o module_ra_rrtm.o module_ra_rrtmg_lw.o module_ra_rrtmg_sw.o module_ra_rrtmg_aero_optical_util_cmaq.o module_ra_rrtmg_lwf.o module_ra_rrtmg_swf.o module_ra_rrtmg_lwk.o module_ra_rrtmg_swk.o module_ra_cam_support.o module_ra_cam.o module_ra_gfdleta.o module_ra_flg.o module_ra_hs.o module_ra_eclipse.o module_ra_aerosol.o module_ra_farms.o module_sf_sfclay.o module_sf_sfclayrev.o module_sf_gfs.o module_sf_exchcoef.o module_sf_gfdl.o module_sf_slab.o module_sf_noahdrv.o module_sf_noahlsm.o module_sf_clm.o module_sf_ctsm.o module_sf_ssib.o module_sf_noah_seaice.o module_sf_noah_seaice_drv.o module_sf_noahlsm_glacial_only.o module_sf_noahmp_groundwater.o module_sf_gecros.o module_sf_noahmpdrv.o module_sf_noahmplsm.o module_sf_noahmp_glacier.o module_sf_urban.o module_sf_bep.o module_sf_bep_bem.o module_sf_bem.o module_sf_pxlsm.o module_sf_pxlsm_data.o module_sf_ruclsm.o module_sf_sfcdiags.o module_sf_sfcdiags_ruclsm.o module_sf_sstskin.o module_sf_tmnupdate.o module_sf_ocean_driver.o module_sf_oml.o module_sf_3dpwp.o module_sf_myjsfc.o module_sf_qnsesfc.o module_sf_mynn.o module_sf_fogdes.o module_sf_pxsfclay.o module_sf_temfsfclay.o module_sf_idealscmsfclay.o module_sf_scmflux.o module_sf_scmskintemp.o module_physics_addtendc.o module_physics_init.o module_gfs_machine.o module_gfs_funcphys.o module_gfs_physcons.o module_progtm.o module_pbl_driver.o module_data_gocart_dust.o module_dust_emis.o module_cumulus_driver.o module_shallowcu_driver.o module_microphysics_driver.o module_microphysics_zero_out.o module_mixactivate.o module_radiation_driver.o module_surface_driver.o module_lightning_driver.o module_ltng_cpmpr92z.o module_ltng_crmpr92.o module_ltng_iccg.o module_fdda_psufddagd.o module_fdda_spnudging.o module_fddagd_driver.o module_fddaobs_rtfdda.o module_fddaobs_driver.o module_wind_fitch.o module_sf_lake.o module_diagnostics_driver.o module_irrigation.o   \
+	module_fr_fire_driver.o module_fr_fire_driver_wrf.o module_fr_fire_atm.o module_fr_fire_model.o module_fr_fire_core.o module_fr_fire_phys.o module_fr_fire_util.o module_firebrand_spotting_mpi.o module_firebrand_spotting.o module_diag_afwa.o module_diag_cl.o module_diag_functions.o module_diag_hailcast.o module_diag_misc.o module_diag_nwp.o module_diag_rasm.o module_diag_pld.o module_diag_zld.o module_diag_trad_fields.o module_diag_solar.o
+make[3]: Entering directory '/scratch/piyush31/SCM-WRF/phys'
+rm -f module_ra_rrtmg_lw.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_ra_rrtmg_lw.F > module_ra_rrtmg_lw.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_ra_rrtmg_lw.G  > module_ra_rrtmg_lw.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_ra_rrtmg_lw.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_ra_rrtmg_lw.f90
+rm -f module_ra_rrtmg_lw.G module_ra_rrtmg_lw.bb
+time ifort -o module_ra_rrtmg_lw.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_ra_rrtmg_lw.f90
+
+real	0m41.807s
+user	0m38.429s
+sys	0m0.541s
+rm -f module_ra_rrtmg_sw.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_ra_rrtmg_sw.F > module_ra_rrtmg_sw.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_ra_rrtmg_sw.G  > module_ra_rrtmg_sw.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_ra_rrtmg_sw.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_ra_rrtmg_sw.f90
+rm -f module_ra_rrtmg_sw.G module_ra_rrtmg_sw.bb
+time ifort -o module_ra_rrtmg_sw.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_ra_rrtmg_sw.f90
+
+real	1m11.421s
+user	1m8.688s
+sys	0m0.453s
+rm -f module_radiation_driver.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_radiation_driver.F > module_radiation_driver.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_radiation_driver.G  > module_radiation_driver.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_radiation_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_radiation_driver.f90
+rm -f module_radiation_driver.G module_radiation_driver.bb
+time ifort -o module_radiation_driver.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_radiation_driver.f90
+
+real	0m22.414s
+user	0m17.577s
+sys	0m0.551s
+rm -f module_mixactivate.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_mixactivate.F > module_mixactivate.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_mixactivate.G  > module_mixactivate.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_mixactivate.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_mixactivate.f90
+rm -f module_mixactivate.G module_mixactivate.bb
+time ifort -o module_mixactivate.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_mixactivate.f90
+
+real	0m8.264s
+user	0m6.971s
+sys	0m0.246s
+rm -f module_cu_kfcup.o
+rm -f module_microphysics_driver.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_cu_kfcup.F > module_cu_kfcup.G
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_microphysics_driver.F > module_microphysics_driver.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_cu_kfcup.G  > module_cu_kfcup.bb
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_microphysics_driver.G  > module_microphysics_driver.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_cu_kfcup.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_cu_kfcup.f90
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_microphysics_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_microphysics_driver.f90
+rm -f module_cu_kfcup.G module_cu_kfcup.bb
+time ifort -o module_cu_kfcup.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_cu_kfcup.f90
+rm -f module_microphysics_driver.G module_microphysics_driver.bb
+time ifort -o module_microphysics_driver.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_microphysics_driver.f90
+
+real	0m4.524s
+user	0m2.397s
+sys	0m0.212s
+
+real	0m19.108s
+user	0m17.694s
+sys	0m0.396s
+rm -f module_physics_init.o
+rm -f module_cumulus_driver.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_cumulus_driver.F > module_cumulus_driver.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_physics_init.F  > module_physics_init.bb
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_cumulus_driver.G  > module_cumulus_driver.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_physics_init.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_physics_init.f90
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_cumulus_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_cumulus_driver.f90
+rm -f module_physics_init.b module_physics_init.bb
+time ifort -c -real-size `expr 8 \* 4` -i4  -O0 -fno-inline -no-ip -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  module_physics_init.f90
+rm -f module_cumulus_driver.G module_cumulus_driver.bb
+time ifort -o module_cumulus_driver.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_cumulus_driver.f90
+
+real	0m3.967s
+user	0m2.333s
+sys	0m0.184s
+
+real	0m5.314s
+user	0m2.144s
+sys	0m0.348s
+make[3]: Leaving directory '/scratch/piyush31/SCM-WRF/phys'
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/phys'
+/bin/sh: line 2: [: -eq: unary operator expected
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF'
+------------------------------------------------------------------------------
+NoahMP submodule files populating WRF directories
+------------------------------------------------------------------------------
+if [ 0  -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " chemics ; fi
+if [ 1 -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " em_core ; fi
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF'
+--------------------------------------
+if [ 0  -eq 0 ] ; then \
+	CF= ; \
+else \
+	CF="../chem/module_aerosols_sorgam.o ../chem/module_gocart_aerosols.o ../chem/module_mosaic_driver.o ../chem/module_input_tracer.o ../chem/module_aerosols_soa_vbs.o" ; \
+fi
+( cd dyn_em ; make -i -r -j 8 CF="" )
+make[2]: Entering directory '/scratch/piyush31/SCM-WRF/dyn_em'
+rm -f module_first_rk_step_part1.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_first_rk_step_part1.F > module_first_rk_step_part1.G
+rm -f start_em.o
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   module_first_rk_step_part1.G  > module_first_rk_step_part1.bb
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" start_em.F > start_em.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   start_em.G  > start_em.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe module_first_rk_step_part1.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_first_rk_step_part1.f90
+rm -f module_first_rk_step_part1.G module_first_rk_step_part1.bb
+time ifort -o module_first_rk_step_part1.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  module_first_rk_step_part1.f90
+/scratch/piyush31/SCM-WRF/tools/standard.exe start_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > start_em.f90
+rm -f start_em.G start_em.bb
+time ifort -o start_em.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  start_em.f90
+
+real	1m51.555s
+user	1m46.113s
+sys	0m3.165s
+
+real	16m11.283s
+user	16m6.576s
+sys	0m2.816s
+rm -f solve_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" solve_em.F > solve_em.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   solve_em.G  > solve_em.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe solve_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > solve_em.f90
+rm -f solve_em.G solve_em.bb
+time ifort -o solve_em.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  solve_em.f90
+
+real	0m32.177s
+user	0m29.571s
+sys	0m0.707s
+ar ru ../main/libwrflib.a module_advect_em.o module_ieva_em.o module_diffusion_em.o module_small_step_em.o module_big_step_utilities_em.o module_em.o module_solvedebug_em.o module_bc_em.o module_init_utilities.o module_wps_io_arw.o module_damping_em.o module_polarfft.o module_force_scm.o module_first_rk_step_part1.o module_first_rk_step_part2.o module_avgflx_em.o module_sfs_nba.o module_convtrans_prep.o module_sfs_driver.o module_stoch.o module_after_all_rk_steps.o  init_modules_em.o solve_em.o start_em.o shift_domain_em.o couple_or_uncouple_em.o nest_init_utils.o adapt_timestep_em.o interp_domain_em.o
+make[2]: Leaving directory '/scratch/piyush31/SCM-WRF/dyn_em'
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF'
+if [ 0 -eq 1 ]   ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " wrf_hydro ; fi
+( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " SOLVER=em em_wrf )
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF/main'
+ranlib  libwrflib.a
+time ifort -o wrf.exe  -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip   wrf.o ../main/module_wrf_top.o libwrflib.a  /scratch/piyush31/SCM-WRF/external/fftpack/fftpack5/libfftpack.a /scratch/piyush31/SCM-WRF/external/io_grib1/libio_grib1.a /scratch/piyush31/SCM-WRF/external/io_grib_share/libio_grib_share.a /scratch/piyush31/SCM-WRF/external/io_int/libwrfio_int.a -L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time /scratch/piyush31/SCM-WRF/frame/module_internal_header_util.o /scratch/piyush31/SCM-WRF/frame/pack_utils.o -L/scratch/piyush31/SCM-WRF/external/io_netcdf -lwrfio_nf -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/lib -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/lib -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/lib64 -lnetcdff -lnetcdf         -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/lib64 -lhdf5_hl -lhdf5 -lz   
+
+real	0m4.902s
+user	0m1.190s
+sys	0m0.910s
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF/main'
+( cd run ; /bin/rm -f wrf.exe ; ln -s ../main/wrf.exe . )
+if [ 0 -eq 1 ] ; then \
+  ( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " SOLVER=em em_wrf_SST_ESMF ) ; \
+fi
+build started:   Thu 15 Jun 2023 04:15:45 PM EDT
+build completed: Thu 15 Jun 2023 04:36:39 PM EDT
+--------------------------------------
+( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include " SOLVER=em IDEAL_CASE=scm_xy em_ideal )
+make[1]: Entering directory '/scratch/piyush31/SCM-WRF/main'
+rm -f ideal_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" ideal_em.F > ideal_em.G
+/lib/cpp -P -nostdinc -I/scratch/piyush31/SCM-WRF/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT -DRPC_TYPES=1  -DNETCDF -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT   ideal_em.G  > ideal_em.bb
+/scratch/piyush31/SCM-WRF/tools/standard.exe ideal_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > ideal_em.f90
+rm -f ideal_em.G ideal_em.bb
+time ifort -o ideal_em.o -c -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian    -I../dyn_em  -I/scratch/piyush31/SCM-WRF/external/esmf_time_f90  -I/scratch/piyush31/SCM-WRF/main -I/scratch/piyush31/SCM-WRF/external/io_netcdf -I/scratch/piyush31/SCM-WRF/external/io_int -I/scratch/piyush31/SCM-WRF/frame -I/scratch/piyush31/SCM-WRF/share -I/scratch/piyush31/SCM-WRF/phys -I/scratch/piyush31/SCM-WRF/wrftladj -I/scratch/piyush31/SCM-WRF/chem -I/scratch/piyush31/SCM-WRF/inc -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/include -I/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/include  -real-size `expr 8 \* 4` -i4  ideal_em.f90
+
+real	0m3.932s
+user	0m1.933s
+sys	0m0.327s
+ranlib  libwrflib.a
+time ifort -o ideal.exe  -O3 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip   ideal_em.o ../dyn_em/module_initialize_scm_xy.o libwrflib.a /scratch/piyush31/SCM-WRF/external/fftpack/fftpack5/libfftpack.a /scratch/piyush31/SCM-WRF/external/io_grib1/libio_grib1.a /scratch/piyush31/SCM-WRF/external/io_grib_share/libio_grib_share.a /scratch/piyush31/SCM-WRF/external/io_int/libwrfio_int.a -L/scratch/piyush31/SCM-WRF/external/esmf_time_f90 -lesmf_time /scratch/piyush31/SCM-WRF/frame/module_internal_header_util.o /scratch/piyush31/SCM-WRF/frame/pack_utils.o -L/scratch/piyush31/SCM-WRF/external/io_netcdf -lwrfio_nf -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/lib -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/lib -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-fortran-mpi/4.5.2/lib64 -lnetcdff -lnetcdf         -L/cvmfs/soft.computecanada.ca/easybuild/software/2020/avx2/MPI/intel2020/openmpi4/netcdf-mpi/4.7.4/lib64 -lhdf5_hl -lhdf5 -lz  
+
+real	0m3.221s
+user	0m1.078s
+sys	0m0.633s
+make[1]: Leaving directory '/scratch/piyush31/SCM-WRF/main'
+( cd test/em_scm_xy ; /bin/rm -f wrf.exe ; ln -s ../../main/wrf.exe . )
+( cd test/em_scm_xy ; /bin/rm -f ideal.exe ; ln -s ../../main/ideal.exe . )
+( cd test/em_scm_xy ; /bin/rm -f README.namelist ; ln -s ../../run/README.namelist . ; \
+	ln -sf ../../run/GENPARM.TBL . ; \
+	ln -sf ../../run/LANDUSE.TBL . ; \
+	ln -sf ../../run/SOILPARM.TBL . ; \
+	ln -sf ../../run/VEGPARM.TBL . ; \
+	ln -sf ../../run/RRTM_DATA . ) 
+( cd run ; /bin/rm -f ideal.exe ; ln -s ../main/ideal.exe . )
+( cd run ; if test -f namelist.input ; then \
+	/bin/cp -f namelist.input namelist.input.backup.`date +%Y-%m-%d_%H_%M_%S` ; fi ; \
+	/bin/rm -f namelist.input ; cp ../test/em_scm_xy/namelist.input . )
+( cd run ; /bin/rm -f input_sounding ; ln -s ../test/em_scm_xy/input_sounding . )
+ 
+==========================================================================
+build started:   Thu 15 Jun 2023 04:15:45 PM EDT
+build completed: Thu 15 Jun 2023 04:36:48 PM EDT
+ 
+--->                  Executables successfully built                  <---
+ 
+-rwxr-x--- 1 piyush31 piyush31 42160672 Jun 15 16:36 main/ideal.exe
+-rwxr-x--- 1 piyush31 piyush31 51390784 Jun 15 16:36 main/wrf.exe
+ 
+==========================================================================
+ 
