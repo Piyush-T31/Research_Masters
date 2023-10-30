@@ -1,0 +1,19 @@
+#!/bin/bash
+# bash script for submitting a job to the sharcnet Graham queue
+# change the highlighted part to your username
+
+#SBATCH --time=00-01:30:00         # time (DD-HH:MM:SS)
+#SBATCH --job-name="piyush31-compile"     # job name
+
+#SBATCH --cpus-per-task=16                # cpu per task
+#SBATCH --mem=64G                       # memory per cpu
+#SBATCH --mail-user=teelokup@gmail.com   # send an email to a specific address
+#SBATCH --mail-type=BEGIN           # send an email when the job begins
+#SBATCH --mail-type=FAIL          # send an email when the job fails
+#SBATCH --mail-type=END          # send an email when the job ends
+#SBATCH --output=piyush31-%j.log                 # log file
+#SBATCH --error=piyush31-%j.err                  # error file
+#SBATCH --account=def-yochen
+module load StdEnv/2020
+module load wrf
+./compile -j 16 em_scm_xy >& checkcompileemreal.log
